@@ -14,7 +14,7 @@ export class ApiparserService {
 
 
   hit(url, method, data, needRaw=false, headers=false){
-    url = "https://algofocus-assignment.herokuapp.com" + url;
+    url = "http://localhost:4000" + url;
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json',
@@ -28,8 +28,8 @@ export class ApiparserService {
     );
   }
 
-  hitImage(url, method, data, needRaw=false, headers=false){
-    url = "https://algofocus-assignment.herokuapp.com" + url;
+  file(url, method, data, needRaw=false, headers=false){
+    url = "http://localhost:4000" + url;
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json',
@@ -42,8 +42,6 @@ export class ApiparserService {
       ), needRaw, headers
     );
   }
-
-
   private parse(reqPromise, needRaw, headers){
     return new Promise((resolve, reject)=>{
       reqPromise.subscribe(function(res){

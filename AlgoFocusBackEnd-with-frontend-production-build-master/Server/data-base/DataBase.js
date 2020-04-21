@@ -4,30 +4,22 @@ const client = new MongoClient(uri, { useNewUrlParser: true  , useUnifiedTopolog
 
 var dbconnection =  async () =>{
     await client.connect();
-    let connection = await client.db("AlgoFocus").collection('SubmissionData');
+    let connection = await client.db("Dots");
     return connection;
 }
 
-var dbWrite = async (data) =>{
-    let collection = await dbconnection();
-    let resp = await collection.insertOne(data);
+var dbWrite = async (data , collection) =>{
+    let db = await dbconnection();
+    let resp = await db.collection(`${collection}`).insertOne(data);
     return resp;
 }
 
-var dbFetch = async () =>{
-    let collection = await dbconnection();
-    let resp = await collection.find({}).toArray();
+var dbFetch = async (data , collection) =>{
+    let db = await dbconnection();
+    let resp = await db.collection(`${collection}`).find(data).toArray();
     return resp;
 }
 
-var dbImagestore = async (data , email)=>{
-    let collection = await dbconnection();
-    var myquery = { email: email };
-    var newvalues = { $set: {picUrl: data } };
-    let resp = await collection.updateOne(myquery , newvalues);
-    return resp;
-}
 
 module.exports.dbWrite =  dbWrite ;
 module.exports.dbFetch = dbFetch ;
-module.exports.dbImagestore = dbImagestore ;

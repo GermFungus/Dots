@@ -7,7 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { HeaderComponent } from './views/common/header/header.component';
 import { FooterComponent } from './views/common/footer/footer.component';
-
+import { FileUploadModule } from './file-upload/file-upload.module';
 
 @NgModule({
   declarations: [
@@ -21,7 +21,8 @@ import { FooterComponent } from './views/common/footer/footer.component';
     AppRoutingModule,
     MainModuleModule,
     HttpClientModule,
-    NgbModule
+    NgbModule,
+    FileUploadModule
   ],
   providers: [],
   bootstrap: [AppComponent]
